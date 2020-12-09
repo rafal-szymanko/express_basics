@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        Name: <input class="name">
+        Surname: <input class="surname">
+        <button type="submit">Generate hyperlink</button>
+    </form>
+    <script>
+        const nameInput = document.querySelector('.name');
+        const surnameInput = document.querySelector('.surname');
+        const form = document.querySelector('form');
+        const body = document.querySelector("body"); 
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = nameInput.value;
+            const surname = surnameInput.value;
+
+            const link = document.createElement("a");   
+            link.innerHTML = "HyperLink";                  
+            document.body.appendChild(link);    
+
+            const hyperlink = document.querySelector('a');
+            // const url = `http://localhost:3000/?name=${encodeURIComponent(name)}&surname=${encodeURIComponent(surname)}`
+            
+            const params = new URLSearchParams({
+                name,
+                surname
+            });
+
+            const urlByURLSearchParams = `http://localhost:3000/${params}`
+
+            hyperlink.setAttribute('href', urlByURLSearchParams)
+        });
+    
+    </script>
+</body>
+</html>
